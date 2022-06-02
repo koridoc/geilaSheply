@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -69,6 +69,11 @@ namespace geilaSheply
         public void Remove(University university)
         {
             UniversityList.Remove(university);
+        }
+
+        public University First()
+        {
+            return UniversityList.First();
         }
 
         public bool isEmpty()

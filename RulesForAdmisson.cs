@@ -6,33 +6,33 @@ using System.Text;
 
 namespace geilaSheply
 {
+
     public delegate int  ComparatorPrioritySubject(ExamResult a, ExamResult b);
 
-
-    public class ExamResultComparer: IComparer<ExamResult>
+    public class AbiturientComparer: IComparer<ExamResult>
     {
         private ComparatorPrioritySubject _comparator;
 
-        public ExamResultComparer(ComparatorPrioritySubject comparator)
+        public AbiturientComparer(ComparatorPrioritySubject comparator)
         {
             _comparator = comparator;
         }
 
-        public int Compare (ExamResult a, ExamResult b)
+        public int Compare (Abiturient a, Abiturient b)
         {
             if(a is null || b is null) 
                 throw new ArgumentException("Некорректное значение параметра");
             
-            return _comparator(a, b);
+            return _comparator(a.Result, b.Result);
         }
     }
 
     public class RulesForAdmission
     {
         private ExamResult _minimumScore;
-        public ExamResultComparer Comparator{get;}
+        public AbiturientComparer Comparator{get;}
 
-        public RulesForAdmission(ExamResult minimumScore, ExamResultComparer comparator)
+        public RulesForAdmission(ExamResult minimumScore, AbiturientComparer comparator)
         {
             _minimumScore = minimumScore;
             Comparator = comparator;

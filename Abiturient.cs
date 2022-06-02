@@ -35,6 +35,11 @@ namespace geilaSheply
             return UniversitiesForAdmission.isEmpty();
         }
 
+        public University getFirstPriorityUniversity()
+        {
+            return UniversitiesForAdmission.First();
+        }
+
     }
 
     public class Abiturients
@@ -56,14 +61,18 @@ namespace geilaSheply
             return AbiturientList.Count();
         }
 
+        public bool haveNotEnrolledAbiturients()
+        {
+            return AbiturientList.Where( x => x.onTheEnrollmentList == false).Count() > 0;
+        }
+
         public Abiturient Last() 
         {
             return AbiturientList.Last();
         }
-        public void Sort(ExamResultComparer comparator)
+        public void Sort(AbiturientComparer comparator)
         {
-            //TODO
-            //AbiturientList.Sort(comparator);
+            AbiturientList.Sort(comparator);
         }
     }
 

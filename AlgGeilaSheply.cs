@@ -18,7 +18,28 @@ namespace geilaSheply
 
         public void Run()
         {
-            
+            bool haveNotEnrolledAbiturients = abiturients.haveNotEnrolledAbiturients();
+            bool areVacanciesAvaible = universities.areVacanciesAvaible();
+
+            while(haveNotEnrolledAbiturients && areVacanciesAvaible)
+            {
+                tryToEnrollAbiturients();
+                haveNotEnrolledAbiturients &= abiturients.haveNotEnrolledAbiturients();
+                areVacanciesAvaible &= universities.areVacanciesAvaible();   
+            }
         }
+
+        private void tryToEnrollAbiturients()
+        {
+            foreach(var abiturient in abiturients.AbiturientList)
+            {
+                var abitPriorUniversity = abiturient.getFirstPriorityUniversity();
+                
+                abitPriorUniversity.TryAdmitAbiturient(abiturient);
+                abiturient.RemoveUniversityForAdmission(abitPriorUniversity);
+            }
+        }
+
+
     }
 }
