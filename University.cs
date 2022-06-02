@@ -5,13 +5,60 @@ using System.Text;
 
 namespace geilaSheply
 {
-    class University
+    public class University
     {
-        public int _limits { get; }
-        public ExamResult minimalResult { get; }
+        private int _limits { get; }
+        private RulesForAdmission Rules;
 
-        public ComparatorPrioritySubject Comparator;
-        public List<Abiturient> abiturientsInShortList { get; }
+        public Abiturients AbiturientsInShortList { get; }
 
+        public University(int limits, RulesForAdmission Rules)
+        {
+            _limits = limits;
+            Comparator = comparator;
+        }
+
+        public bool areVacanciesAvaible() {
+            return AbiturientsInShortList.Count() <= _limits;
+        }
+
+    }
+
+    public class Universities
+    {
+        public List<University> UniversityList;
+
+        public Universities()
+        {
+            UniversityList = new List<University>();
+        }
+
+        public void Add(University university)
+        {
+            UniversityList.Add(university);
+        }
+
+        public void Remove(University university)
+        {
+            UniversityList.Remove(item);
+        }
+
+        public bool isEmpty()
+        {
+            return UniversityList.Count() == 0;
+        }
+
+        public bool areVacanciesAvaible()
+        {
+            bool areVacanciesAvaible = false;
+            foreach(university in UniversityList)
+            {
+                areVacanciesAvaible |= university.areVacanciesAvaible();
+                if(areVacanciesAvaible)
+                {
+                    break;
+                }
+            }
+        }
     }
 }

@@ -5,21 +5,56 @@ using System.Text;
 
 namespace geilaSheply
 {
-    class Abiturient
+    public class Abiturient
     {
-        public Abiturient(ExamResult examResult)
-        {
-            ExamResult = examResult;
-        }
 
         public bool onTheEnrollmentList { get; }
 
-        public List<University> ListUniversities { get; }
+        public Universities UniversitiesForAdmission { get; }
         public ExamResult ExamResult { get; private set; }
+
+
+        public Abiturient(ExamResult examResult)
+        {
+            ExamResult = examResult;
+            onTheEnrollmentList = false;
+        }
+
+        public void AddUniversityForAdmission(University university)
+        {
+            UniversitiesForAdmission.Add(university);
+        }
+
+        public void RemoveUniversityForAdmission(University university)
+        {
+            UniversitiesForAdmission.Remove(university);
+        }
+
+        public bool haveUniversitiesForAdmission()
+        {
+            return UniversitiesForAdmission.isEmpty();
+        }
+
     }
 
+    public class Abiturients
+    {
+        public List<Abiturient> AbiturientList;
 
- 
+        public void AddAbiturient(Abiturient abiturient)
+        {
+            AbiturientList.Add(abiturient);
+        }
 
-   
+        public void RemoveAbiturient(Abiturient abiturient)
+        {
+            AbiturientList.Remove(abiturient);
+        }
+
+        public int Count()
+        {
+            return AbiturientList.Count();
+        }
+    }
+
 }

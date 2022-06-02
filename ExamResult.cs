@@ -5,7 +5,7 @@ using System.Text;
 
 namespace geilaSheply
 {
-    class ExamResult
+    public class ExamResult
     {
         public int Math { get; private set; }
         public int RussianLang { get; private set; }
@@ -22,7 +22,4 @@ namespace geilaSheply
 
     }
 
-    delegate bool ComparatorPrioritySubject(ExamResult a, ExamResult b);
-
-    delegate bool isUpperMin(ExamResult result);
 }
