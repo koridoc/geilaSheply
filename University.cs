@@ -18,7 +18,7 @@ namespace geilaSheply
             _rules = rules;
         }
 
-        public TryAdmitAbiturient(Abiturient abiturient)
+        public void TryAdmitAbiturient(Abiturient abiturient)
         {
             bool minimumScorePassed = _rules.isMinumumScorePassed(abiturient.Result);
 
@@ -41,14 +41,14 @@ namespace geilaSheply
             
             Abiturient lastAbiturient = AbiturientsInShortList.Last();
             lastAbiturient.onTheEnrollmentList = false;
-            AbiturientsInShortList.Remove(last);
+            AbiturientsInShortList.RemoveAbiturient(lastAbiturient);
         }
 
         private void addAbiturientToShortList(Abiturient abiturient)
         {
-            AbiturientsInShortList.Add(abiturient);
+            AbiturientsInShortList.AddAbiturient(abiturient);
             abiturient.onTheEnrollmentList = true;
-            AbiturientsInShortList.Sort(rules.Comparator);
+            AbiturientsInShortList.Sort(_rules.Comparator);
         }
     }
 
@@ -68,7 +68,7 @@ namespace geilaSheply
 
         public void Remove(University university)
         {
-            UniversityList.Remove(item);
+            UniversityList.Remove(university);
         }
 
         public bool isEmpty()
@@ -78,15 +78,16 @@ namespace geilaSheply
 
         public bool areVacanciesAvaible()
         {
-            bool areVacanciesAvaible = false;
-            foreach(university in UniversityList)
+            bool _areVacanciesAvaible = false;
+            foreach(var university in UniversityList)
             {
-                areVacanciesAvaible |= university.areVacanciesAvaible();
-                if(areVacanciesAvaible)
+                _areVacanciesAvaible |= university.areVacanciesAvaible();
+                if(_areVacanciesAvaible)
                 {
                     break;
                 }
             }
+            return _areVacanciesAvaible;
         }
     }
 }

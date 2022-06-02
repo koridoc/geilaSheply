@@ -8,7 +8,7 @@ namespace geilaSheply
     public class Abiturient
     {
 
-        public bool onTheEnrollmentList { get; }
+        public bool onTheEnrollmentList { get; set; }
 
         public Universities UniversitiesForAdmission { get; }
         public ExamResult Result { get; private set; }
@@ -56,9 +56,14 @@ namespace geilaSheply
             return AbiturientList.Count();
         }
 
+        public Abiturient Last() 
+        {
+            return AbiturientList.Last();
+        }
         public void Sort(ExamResultComparer comparator)
         {
-            AbiturientList.Sort(comparator);
+            //TODO
+            //AbiturientList.Sort(comparator);
         }
     }
 

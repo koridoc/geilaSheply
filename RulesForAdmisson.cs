@@ -6,7 +6,7 @@ using System.Text;
 
 namespace geilaSheply
 {
-    delegate int  ComparatorPrioritySubject(ExamResult a, ExamResult b);
+    public delegate int  ComparatorPrioritySubject(ExamResult a, ExamResult b);
 
 
     public class ExamResultComparer: IComparer<ExamResult>
@@ -18,12 +18,12 @@ namespace geilaSheply
             _comparator = comparator;
         }
 
-        public int Compare (ExamResult? a, ExamResult? b)
+        public int Compare (ExamResult a, ExamResult b)
         {
             if(a is null || b is null) 
                 throw new ArgumentException("Некорректное значение параметра");
             
-            return comparator(a, b);
+            return _comparator(a, b);
         }
     }
 
