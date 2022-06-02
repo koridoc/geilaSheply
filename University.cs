@@ -8,20 +8,48 @@ namespace geilaSheply
     public class University
     {
         private int _limits { get; }
-        private RulesForAdmission Rules;
+        private RulesForAdmission _rules;
 
         public Abiturients AbiturientsInShortList { get; }
 
-        public University(int limits, RulesForAdmission Rules)
+        public University(int limits, RulesForAdmission rules)
         {
             _limits = limits;
-            Comparator = comparator;
+            _rules = rules;
         }
 
+        public TryAdmitAbiturient(Abiturient abiturient)
+        {
+            bool minimumScorePassed = _rules.isMinumumScorePassed(abiturient.Result);
+
+            if( this.areVacanciesAvaible() && minimumScorePassed)
+            {
+                addAbiturientToShortList(abiturient);
+            }
+            else
+            {
+                tryReplaceAbiturientInShortList(abiturient);
+            }
+        }
         public bool areVacanciesAvaible() {
             return AbiturientsInShortList.Count() <= _limits;
         }
 
+        private void tryReplaceAbiturientInShortList(Abiturient abiturient)
+        {
+            addAbiturientToShortList(abiturient);
+            
+            Abiturient lastAbiturient = AbiturientsInShortList.Last();
+            lastAbiturient.onTheEnrollmentList = false;
+            AbiturientsInShortList.Remove(last);
+        }
+
+        private void addAbiturientToShortList(Abiturient abiturient)
+        {
+            AbiturientsInShortList.Add(abiturient);
+            abiturient.onTheEnrollmentList = true;
+            AbiturientsInShortList.Sort(rules.Comparator);
+        }
     }
 
     public class Universities

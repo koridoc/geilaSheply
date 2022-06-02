@@ -11,12 +11,12 @@ namespace geilaSheply
         public bool onTheEnrollmentList { get; }
 
         public Universities UniversitiesForAdmission { get; }
-        public ExamResult ExamResult { get; private set; }
+        public ExamResult Result { get; private set; }
 
 
         public Abiturient(ExamResult examResult)
         {
-            ExamResult = examResult;
+            Result = examResult;
             onTheEnrollmentList = false;
         }
 
@@ -54,6 +54,11 @@ namespace geilaSheply
         public int Count()
         {
             return AbiturientList.Count();
+        }
+
+        public void Sort(ExamResultComparer comparator)
+        {
+            AbiturientList.Sort(comparator);
         }
     }
 
