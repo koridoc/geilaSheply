@@ -7,14 +7,15 @@ namespace geilaSheply
 {
     public class University
     {
-        private RulesForAdmission _rules;
-        public string Name{get;}
+        private readonly RulesForAdmission _rules;
+        public string Name { get; }
         public Abiturients AbiturientsInShortList { get; }
 
         public University(string name, RulesForAdmission rules)
         {
             Name = name;
             _rules = rules;
+            AbiturientsInShortList = new Abiturients();
         }
 
         public void TryAdmitAbiturient(Abiturient abiturient)
@@ -32,7 +33,7 @@ namespace geilaSheply
         }
 
         public bool areVacanciesAvaible() {
-            return AbiturientsInShortList.Count() <= _rules.Limits;
+            return AbiturientsInShortList.Count() < _rules.Limits;
         }
 
         private void tryReplaceAbiturientInShortList(Abiturient abiturient)
@@ -54,11 +55,16 @@ namespace geilaSheply
 
     public class Universities
     {
-        public List<University> UniversityList;
+        private List<University> UniversityList;
 
         public Universities()
         {
             UniversityList = new List<University>();
+        }
+
+        public List<University> getListUniversities() 
+        {
+            return new List<University>(UniversityList);
         }
 
         public void Add(University university)
@@ -76,6 +82,11 @@ namespace geilaSheply
             return UniversityList.First();
         }
 
+        public void Shuflle() 
+        {
+            Random _random = new Random();
+            UniversityList = UniversityList.OrderBy((item) => _random.Next()).ToList();
+        }
         public bool isEmpty()
         {
             return UniversityList.Count() == 0;

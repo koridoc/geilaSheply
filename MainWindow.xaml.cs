@@ -19,9 +19,14 @@ namespace geilaSheply
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainModel mainModel;
+
+
         public MainWindow()
         {
             InitializeComponent();
+            mainModel = new MainModel();
+
         }
     }
 }

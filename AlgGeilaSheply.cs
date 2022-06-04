@@ -5,7 +5,7 @@ using System.Text;
 
 namespace geilaSheply
 {
-    class AlgGeilaSheply
+    public class AlgGeilaSheply
     {
         public Abiturients abiturients;
         public Universities universities;

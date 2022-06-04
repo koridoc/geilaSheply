@@ -53,6 +53,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AlgGeilaSheply.cs" />
+    <Compile Include="Generators.cs" />
+    <Compile Include="MainModel.cs" />
     <Compile Include="RulesForAdmisson.cs" />
     <Compile Include="University.cs" />
     <Page Include="MainWindow.xaml">

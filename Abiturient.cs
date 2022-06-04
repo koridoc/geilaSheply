@@ -19,6 +19,7 @@ namespace geilaSheply
             FullName = fullName;
             Result = examResult;
             onTheEnrollmentList = false;
+            UniversitiesForAdmission = new Universities();
         }
 
         public void AddUniversityForAdmission(University university)
@@ -47,6 +48,11 @@ namespace geilaSheply
     {
         public List<Abiturient> AbiturientList;
 
+
+        public Abiturients() 
+        {
+            AbiturientList = new List<Abiturient>();
+        }
         public void AddAbiturient(Abiturient abiturient)
         {
             AbiturientList.Add(abiturient);
