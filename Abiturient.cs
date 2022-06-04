@@ -7,39 +7,47 @@ namespace geilaSheply
 {
     public class Abiturient
     {
+        public uint Id { get; }
         public string FullName{get;}
         public bool onTheEnrollmentList { get; set; }
 
-        public Universities UniversitiesForAdmission { get; }
+
+        private Universities _universitiesForAdmission;
+
+        private List<University> _universitiesForAdmissionBefore;
         public ExamResult Result { get; private set; }
 
+        private static uint _maxId = 0;
 
         public Abiturient(string fullName, ExamResult examResult)
         {
+            Id = _maxId++;
             FullName = fullName;
             Result = examResult;
             onTheEnrollmentList = false;
-            UniversitiesForAdmission = new Universities();
+            _universitiesForAdmission = new Universities();
+            _universitiesForAdmissionBefore = new List<University>();
         }
 
         public void AddUniversityForAdmission(University university)
         {
-            UniversitiesForAdmission.Add(university);
+            _universitiesForAdmission.Add(university);
+            _universitiesForAdmissionBefore.Add(university);
         }
 
         public void RemoveUniversityForAdmission(University university)
         {
-            UniversitiesForAdmission.Remove(university);
+            _universitiesForAdmission.Remove(university);
         }
 
         public bool haveUniversitiesForAdmission()
         {
-            return UniversitiesForAdmission.isEmpty();
+            return _universitiesForAdmission.isEmpty();
         }
 
         public University getFirstPriorityUniversity()
         {
-            return UniversitiesForAdmission.First();
+            return _universitiesForAdmission.First();
         }
 
     }

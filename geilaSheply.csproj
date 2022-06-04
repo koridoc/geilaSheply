@@ -53,11 +53,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdmittedList.xaml.cs">
+      <DependentUpon>AdmittedList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AlgGeilaSheply.cs" />
     <Compile Include="Generators.cs" />
+    <Compile Include="InfoAbiturient.xaml.cs">
+      <DependentUpon>InfoAbiturient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainModel.cs" />
     <Compile Include="RulesForAdmisson.cs" />
+    <Compile Include="SettingsUniversity.xaml.cs">
+      <DependentUpon>SettingsUniversity.xaml</DependentUpon>
+    </Compile>
     <Compile Include="University.cs" />
+    <Page Include="AdmittedList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoAbiturient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,6 +89,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SettingsUniversity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

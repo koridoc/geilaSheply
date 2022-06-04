@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:geilaSheply"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Распределение абитуриентов по ВУЗам" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid HorizontalAlignment="Left" Height="359" Margin="10,50,0,0" VerticalAlignment="Top" Width="772"/>
+        <Label Content="Количество абитуриентов:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="22" Margin="170,14,0,0" TextWrapping="Wrap" Text="25" VerticalAlignment="Top" Width="50"/>
+        <Button Content="Создать список абитуриентов" HorizontalAlignment="Left" Margin="230,16,0,0" VerticalAlignment="Top" Width="200"/>
+        <Button Content="Список ВУЗов" HorizontalAlignment="Left" Margin="440,16,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="Распределить абитуриентов по ВУЗам" HorizontalAlignment="Left" Margin="550,16,0,0" VerticalAlignment="Top" Width="232"/>
+
     </Grid>
 </Window>

@@ -8,11 +8,15 @@ namespace geilaSheply
     public class University
     {
         private readonly RulesForAdmission _rules;
+        public uint Id { get; }
         public string Name { get; }
         public Abiturients AbiturientsInShortList { get; }
 
+        private static uint _maxId = 0;
+
         public University(string name, RulesForAdmission rules)
         {
+            Id = _maxId++;
             Name = name;
             _rules = rules;
             AbiturientsInShortList = new Abiturients();
