@@ -35,7 +35,10 @@ namespace geilaSheply
             return abiturients;
         }
 
-   
+        public  void SetAvaibleUniversities(Universities  universities) 
+        {
+            _avaibleUniversities = universities;
+        }
 
         public Abiturient GetAbiturient() 
         {
@@ -46,9 +49,8 @@ namespace geilaSheply
             _addPriorityUniversities(abiturient);
             return abiturient;
         }
-        public GeneratorAbiturient(Universities universities)
+        public GeneratorAbiturient()
         {
-            _avaibleUniversities = universities;
             _firstName = new List<string>()
             {
                  "Александр"
@@ -132,7 +134,7 @@ namespace geilaSheply
         private void _addPriorityUniversities(Abiturient abiturient) {
             List<University> listUniversities = _avaibleUniversities.getListUniversities();
 
-            listUniversities = listUniversities.OrderBy((item) => _rand.Next()).Skip(_rand.Next(3)).ToList();
+            listUniversities = listUniversities.OrderBy((item) => _rand.Next()).ToList().GetRange(0, _rand.Next(3,5));
 
             foreach( var university in listUniversities) 
             {
