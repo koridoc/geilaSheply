@@ -7,14 +7,13 @@ namespace geilaSheply
 {
     public class University
     {
-        private int _limits { get; }
         private RulesForAdmission _rules;
-
+        public string Name{get;}
         public Abiturients AbiturientsInShortList { get; }
 
-        public University(int limits, RulesForAdmission rules)
+        public University(string name, RulesForAdmission rules)
         {
-            _limits = limits;
+            Name = name;
             _rules = rules;
         }
 
@@ -31,8 +30,9 @@ namespace geilaSheply
                 tryReplaceAbiturientInShortList(abiturient);
             }
         }
+
         public bool areVacanciesAvaible() {
-            return AbiturientsInShortList.Count() <= _limits;
+            return AbiturientsInShortList.Count() <= _rules.Limits;
         }
 
         private void tryReplaceAbiturientInShortList(Abiturient abiturient)

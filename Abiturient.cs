@@ -7,15 +7,16 @@ namespace geilaSheply
 {
     public class Abiturient
     {
-
+        public string FullName{get;}
         public bool onTheEnrollmentList { get; set; }
 
         public Universities UniversitiesForAdmission { get; }
         public ExamResult Result { get; private set; }
 
 
-        public Abiturient(ExamResult examResult)
+        public Abiturient(string fullName, ExamResult examResult)
         {
+            FullName = fullName;
             Result = examResult;
             onTheEnrollmentList = false;
         }
