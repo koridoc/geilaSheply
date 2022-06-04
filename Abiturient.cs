@@ -5,67 +5,90 @@ using System.Text;
 
 namespace geilaSheply
 {
-
-    enum Subject
+    public class Abiturient
     {
-        Math,
-        RussanLang,
-        Physics,
-        Informatics
-    }
+        public uint Id { get; }
+        public string FullName{get;}
+        public bool onTheEnrollmentList { get; set; }
 
-    class Abiturient
-    {
-        public Abiturient(ExamResult examResult)
+
+        private Universities _universitiesForAdmission;
+
+        private List<University> _universitiesForAdmissionBefore;
+        public ExamResult Result { get; private set; }
+
+        private static uint _maxId = 0;
+
+        public Abiturient(string fullName, ExamResult examResult)
         {
-            ExamResult = examResult;
+            Id = _maxId++;
+            FullName = fullName;
+            Result = examResult;
+            onTheEnrollmentList = false;
+            _universitiesForAdmission = new Universities();
+            _universitiesForAdmissionBefore = new List<University>();
         }
 
-        public bool onTheEnrollmentList { get; }
+        public void AddUniversityForAdmission(University university)
+        {
+            _universitiesForAdmission.Add(university);
+            _universitiesForAdmissionBefore.Add(university);
+        }
 
-        public List<University> ListUniversities { get; }
-        public ExamResult ExamResult { get; private set; }
+        public void RemoveUniversityForAdmission(University university)
+        {
+            _universitiesForAdmission.Remove(university);
+        }
+
+        public bool haveUniversitiesForAdmission()
+        {
+            return _universitiesForAdmission.isEmpty();
+        }
+
+        public University getFirstPriorityUniversity()
+        {
+            return _universitiesForAdmission.First();
+        }
+
     }
 
-    class ExamResult
+    public class Abiturients
     {
-        public int Math { get; private set; }
-        public int RussianLang { get; private set; }
-        public int Physics { get; private set; }
-        public int Informatics { get; private set; }
+        public List<Abiturient> AbiturientList;
 
-        public  ExamResult(int math, int russianLang, int physics, int informatics) 
+
+        public Abiturients() 
         {
-            Math = math;
-            RussianLang = russianLang;
-            Physics = physics;
-            Informatics = informatics;
+            AbiturientList = new List<Abiturient>();
+        }
+        public void AddAbiturient(Abiturient abiturient)
+        {
+            AbiturientList.Add(abiturient);
         }
 
-    }
-
-    delegate bool ComparePrioritySubject(ExamResult a, ExamResult b);
-
-
-    class UniversityPrioritySubject {
-        private ComparePrioritySubject _compare;
-        public UniversityPrioritySubject(ComparePrioritySubject compare) 
+        public void RemoveAbiturient(Abiturient abiturient)
         {
-            _compare = compare;
+            AbiturientList.Remove(abiturient);
         }
-        public bool Compare(ExamResult a, ExamResult b)
+
+        public int Count()
         {
-            return _compare(a,b);
+            return AbiturientList.Count();
+        }
+
+        public bool haveNotEnrolledAbiturients()
+        {
+            return AbiturientList.Where( x => x.onTheEnrollmentList == false).Count() > 0;
+        }
+
+        public Abiturient Last() 
+        {
+            return AbiturientList.Last();
+        }
+        public void Sort(AbiturientComparer comparator)
+        {
+            AbiturientList.Sort(comparator);
         }
     }
 
-    class University
-    {
-        public int _limits { get; }
-        public ExamResult minimalResult { get; }
-
-        public UniversityPrioritySubject Prioryty{get; }
-        public List<Abiturient> abiturientsInShortList { get; }
-
-    }
 }

@@ -9,24 +9,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace geilaSheply
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для InfoAbiturient.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class InfoAbiturient : Window
     {
-        public MainModel mainModel;
-
-
-        public MainWindow()
+        public InfoAbiturient()
         {
             InitializeComponent();
-            mainModel = new MainModel();
-
         }
     }
 }
