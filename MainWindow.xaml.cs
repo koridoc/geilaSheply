@@ -19,14 +19,43 @@ namespace geilaSheply
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainModel mainModel;
+        public MainModelView mainModelView;
 
 
         public MainWindow()
         {
             InitializeComponent();
-            mainModel = new MainModel();
+            mainModelView = new MainModelView();
 
+            this.DataContext = mainModelView;
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            mainModelView.CreateListAbiturients();
+            ViewListAbiturient.ItemsSource = mainModelView.AbiturientsCollection;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            SettingsUniversity settingsUniversity = new SettingsUniversity();
+            settingsUniversity.Show();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (mainModelView.AbiturientsCollection.Count() == 0) 
+            {
+                MessageBox.Show("Список абитуриентов пуст");
+            }
+            else
+            {
+                mainModelView.RunAlgGeilaSheply();
+                AdmittedList admittedList = new AdmittedList(mainModelView.UniversitiesCollection);
+                admittedList.Show();
+            }
+            
         }
     }
 }

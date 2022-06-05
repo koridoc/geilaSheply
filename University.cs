@@ -7,24 +7,25 @@ namespace geilaSheply
 {
     public class University
     {
-        private readonly RulesForAdmission _rules;
+        
         public uint Id { get; }
         public string Name { get; }
         public Abiturients AbiturientsInShortList { get; }
 
         private static uint _maxId = 0;
+        public readonly RulesForAdmission Rules;
 
         public University(string name, RulesForAdmission rules)
         {
             Id = _maxId++;
             Name = name;
-            _rules = rules;
+            Rules = rules;
             AbiturientsInShortList = new Abiturients();
         }
 
         public void TryAdmitAbiturient(Abiturient abiturient)
         {
-            bool minimumScorePassed = _rules.isMinumumScorePassed(abiturient.Result);
+            bool minimumScorePassed = Rules.isMinumumScorePassed(abiturient.Result);
 
             if( this.areVacanciesAvaible() && minimumScorePassed)
             {
@@ -37,7 +38,7 @@ namespace geilaSheply
         }
 
         public bool areVacanciesAvaible() {
-            return AbiturientsInShortList.Count() < _rules.Limits;
+            return AbiturientsInShortList.Count() < Rules.Limits;
         }
 
         private void tryReplaceAbiturientInShortList(Abiturient abiturient)
@@ -53,7 +54,12 @@ namespace geilaSheply
         {
             AbiturientsInShortList.AddAbiturient(abiturient);
             abiturient.onTheEnrollmentList = true;
-            AbiturientsInShortList.Sort(_rules.Comparator);
+            AbiturientsInShortList.Sort(Rules.Comparator);
+        }
+
+        public override string ToString() 
+        {
+            return Name;
         }
     }
 

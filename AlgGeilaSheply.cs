@@ -29,10 +29,18 @@ namespace geilaSheply
             }
         }
 
+
         private void tryToEnrollAbiturients()
         {
             foreach(var abiturient in abiturients.AbiturientList)
             {
+                bool haveUniversities = abiturient.haveUniversitiesForAdmission();
+
+                if (!haveUniversities || abiturient.onTheEnrollmentList) 
+                {
+                    continue;
+                }
+
                 var abitPriorUniversity = abiturient.getFirstPriorityUniversity();
                 
                 abitPriorUniversity.TryAdmitAbiturient(abiturient);

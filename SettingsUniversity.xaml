@@ -7,7 +7,17 @@
         mc:Ignorable="d"
         Title="Список ВУЗов" Height="450" Width="800">
     <Grid>
-        <DataGrid HorizontalAlignment="Left" Height="360" Margin="10,10,0,0" VerticalAlignment="Top" Width="772"/>
+        <DataGrid HorizontalAlignment="Left" Height="360" Margin="10,10,0,0" VerticalAlignment="Top" Width="772">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№"/>
+                <DataGridTextColumn Header="Название"/>
+                <DataGridTextColumn Header="Кол-во мест"/>
+                <DataGridTextColumn Header="М"/>
+                <DataGridTextColumn Header="Р"/>
+                <DataGridTextColumn Header="И"/>
+                <DataGridTextColumn Header="Ф"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button Content="Удалить ВУЗ из списка" HorizontalAlignment="Left" Margin="602,380,0,0" VerticalAlignment="Top" Width="180"/>
         <Button Content="Добавить" HorizontalAlignment="Left" Margin="10,380,0,0" VerticalAlignment="Top" Width="76"/>
 

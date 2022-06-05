@@ -136,7 +136,8 @@ namespace geilaSheply
 
             listUniversities = listUniversities.OrderBy((item) => _rand.Next()).ToList().GetRange(0, _rand.Next(3,5));
 
-            foreach( var university in listUniversities) 
+
+            foreach ( var university in listUniversities) 
             {
                 abiturient.AddUniversityForAdmission(university);
             }

@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:geilaSheply"
         mc:Ignorable="d"
-        Title="Списки на зачисление" Height="450" Width="500">
+        Title="Списки на зачисление" Height="450" Width="750">
     <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="48,13,0,0" VerticalAlignment="Top" Width="200"/>
-        <DataGrid HorizontalAlignment="Left" Height="368" Margin="10,41,0,0" VerticalAlignment="Top" Width="472"/>
+        <ComboBox x:Name="selectUniversityBox" HorizontalAlignment="Left" Margin="48,13,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="selectUniversityBox_SelectionChanged"/>
+        <DataGrid x:Name="admittedAbiturientsGrid" HorizontalAlignment="Left" Height="368" Margin="10,41,0,0" VerticalAlignment="Top" Width="722"/>
         <Label Content="ВУЗ:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 
     </Grid>

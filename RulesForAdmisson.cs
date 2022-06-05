@@ -11,6 +11,7 @@ namespace geilaSheply
 
     public static class Comaprators
     {
+
         public static int InformaticsMathRussianLang(ExamResult a, ExamResult b)
         {
             int sumA = a.Informatics + a.Math + a.RussianLang;
@@ -32,22 +33,29 @@ namespace geilaSheply
 
         }
 
+        public static int Sum(ExamResult a, ExamResult b)
+        {
+            int sumA = a.Physics + a.Math + a.RussianLang;
+            int sumB = b.Physics + b.Math + b.RussianLang;
+
+            return sumB - sumA;
+        }
         public static int PhysicsMathRussianLang(ExamResult a, ExamResult b)
         {
             int sumA = a.Physics + a.Math + a.RussianLang;
             int sumB = b.Physics + b.Math + b.RussianLang;
 
             if (sumA != sumB)
-                return sumA - sumB;
+                return sumB - sumA;
 
             if (a.Physics != b.Physics)
-                return a.Physics - b.Physics;
+                return b.Physics - a.Physics;
 
             if (a.Math != b.Math)
-                return a.Math - b.Math;
+                return b.Math - a.Math;
 
             if (a.RussianLang != b.RussianLang)
-                return a.RussianLang - b.RussianLang;
+                return b.RussianLang - a.RussianLang;
             
             return 0;
         }
@@ -75,7 +83,7 @@ namespace geilaSheply
 
     public class RulesForAdmission
     {
-        private ExamResult _minimumScore;
+        public readonly ExamResult MinimumScore;
         
         public int Limits{get;}
         public AbiturientComparer Comparator{get;}
@@ -83,16 +91,16 @@ namespace geilaSheply
         public RulesForAdmission(int limits, ExamResult minimumScore, AbiturientComparer comparator)
         {
             Limits = limits;
-            _minimumScore = minimumScore;
+            MinimumScore = minimumScore;
             Comparator = comparator;
         }
 
         public bool isMinumumScorePassed(ExamResult score)
         {
-            return score.Math >= _minimumScore.Math
-                && score.RussianLang >= _minimumScore.RussianLang
-                && score.Physics >= _minimumScore.Physics
-                && score.Informatics >= _minimumScore.Informatics;
+            return score.Math >= MinimumScore.Math
+                && score.RussianLang >= MinimumScore.RussianLang
+                && score.Physics >= MinimumScore.Physics
+                && score.Informatics >= MinimumScore.Informatics;
         }
     }
 }
