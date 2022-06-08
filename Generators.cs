@@ -134,9 +134,12 @@ namespace geilaSheply
         private void _addPriorityUniversities(Abiturient abiturient) {
             List<University> listUniversities = _avaibleUniversities.getListUniversities();
 
-            listUniversities = listUniversities.OrderBy((item) => _rand.Next()).ToList().GetRange(0, _rand.Next(3,5));
+            int m = listUniversities.Count() < 5 ? listUniversities.Count() : 5;
 
-            foreach( var university in listUniversities) 
+            listUniversities = listUniversities.OrderBy((item) => _rand.Next()).ToList().GetRange(0, _rand.Next(m-2,m));
+
+
+            foreach ( var university in listUniversities) 
             {
                 abiturient.AddUniversityForAdmission(university);
             }
@@ -168,41 +171,47 @@ namespace geilaSheply
         {
             Universities universities = new Universities();
 
-            var abiturientComparerInformatics = new AbiturientComparer(Comaprators.InformaticsMathRussianLang);
-            var abiturientComparerPhysics = new AbiturientComparer(Comaprators.PhysicsMathRussianLang);
+            var abiturientComparerInformatics = new AbiturientComparer(
+                                                     Comaprators.InformaticsMathRussianLang
+                                                    ,SumSubjects.InformaticsMathRussianLang
+                                                   );
+            var abiturientComparerPhysics = new AbiturientComparer(
+                                                     Comaprators.PhysicsMathRussianLang
+                                                    ,SumSubjects.PhysicsMathRussianLang
+                                                   );
 
             universities.Add(
                 new University("УГАТУ",
                     new RulesForAdmission(5,
-                        new ExamResult(40, 30, 0, 45), abiturientComparerInformatics)
+                        new ExamResult(40, 30, 0, 45), abiturientComparerInformatics, "abiturientComparerInformatics")
                 )
             );
 
             universities.Add(
                 new University("УГНТУ",
                     new RulesForAdmission(10,
-                        new ExamResult(40, 30, 35, 0), abiturientComparerPhysics)
+                        new ExamResult(40, 30, 35, 0), abiturientComparerPhysics, "abiturientComparerPhysics")
                 )
             );
 
             universities.Add(
                 new University("КФУ",
                     new RulesForAdmission(15,
-                        new ExamResult(40, 30, 0, 45), abiturientComparerInformatics)
+                        new ExamResult(40, 30, 0, 45), abiturientComparerInformatics, "abiturientComparerInformatics")
                 )
             );
 
             universities.Add(
                 new University("БГУ",
                     new RulesForAdmission(5,
-                        new ExamResult(40, 30, 35, 0), abiturientComparerPhysics)
+                        new ExamResult(40, 30, 35, 0), abiturientComparerPhysics, "abiturientComparerPhysics")
                 )
             );
 
             universities.Add(
                 new University("ТГУ",
                     new RulesForAdmission(5,
-                        new ExamResult(40, 30, 0, 45), abiturientComparerInformatics)
+                        new ExamResult(40, 30, 0, 45), abiturientComparerInformatics, "abiturientComparerInformatics")
                 )
             );
 

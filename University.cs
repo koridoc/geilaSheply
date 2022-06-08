@@ -7,26 +7,28 @@ namespace geilaSheply
 {
     public class University
     {
-        private readonly RulesForAdmission _rules;
+
         public uint Id { get; }
         public string Name { get; }
         public Abiturients AbiturientsInShortList { get; }
 
+
+        public RulesForAdmission Rules { get; }
         private static uint _maxId = 0;
 
         public University(string name, RulesForAdmission rules)
         {
             Id = _maxId++;
             Name = name;
-            _rules = rules;
+            Rules = rules;
             AbiturientsInShortList = new Abiturients();
         }
 
         public void TryAdmitAbiturient(Abiturient abiturient)
         {
-            bool minimumScorePassed = _rules.isMinumumScorePassed(abiturient.Result);
+            bool minimumScorePassed = Rules.isMinumumScorePassed(abiturient.Result);
 
-            if( this.areVacanciesAvaible() && minimumScorePassed)
+            if (this.areVacanciesAvaible() && minimumScorePassed)
             {
                 addAbiturientToShortList(abiturient);
             }
@@ -36,14 +38,15 @@ namespace geilaSheply
             }
         }
 
-        public bool areVacanciesAvaible() {
-            return AbiturientsInShortList.Count() < _rules.Limits;
+        public bool areVacanciesAvaible()
+        {
+            return AbiturientsInShortList.Count() < Rules.Limits;
         }
 
         private void tryReplaceAbiturientInShortList(Abiturient abiturient)
         {
             addAbiturientToShortList(abiturient);
-            
+
             Abiturient lastAbiturient = AbiturientsInShortList.Last();
             lastAbiturient.onTheEnrollmentList = false;
             AbiturientsInShortList.RemoveAbiturient(lastAbiturient);
@@ -53,7 +56,16 @@ namespace geilaSheply
         {
             AbiturientsInShortList.AddAbiturient(abiturient);
             abiturient.onTheEnrollmentList = true;
-            AbiturientsInShortList.Sort(_rules.Comparator);
+            AbiturientsInShortList.Sort(Rules.Comparator);
+        }
+
+        public void ClearShortList()
+        {
+            AbiturientsInShortList.Clear();
+        }
+        public override string ToString()
+        {
+            return Name;
         }
     }
 
@@ -66,7 +78,7 @@ namespace geilaSheply
             UniversityList = new List<University>();
         }
 
-        public List<University> getListUniversities() 
+        public List<University> getListUniversities()
         {
             return new List<University>(UniversityList);
         }
@@ -86,7 +98,12 @@ namespace geilaSheply
             return UniversityList.First();
         }
 
-        public void Shuflle() 
+        public void ClearInUniversitiesShotList()
+        {
+            UniversityList.ForEach(x => x.ClearShortList());
+        }
+
+        public void Shuflle()
         {
             Random _random = new Random();
             UniversityList = UniversityList.OrderBy((item) => _random.Next()).ToList();
@@ -99,10 +116,10 @@ namespace geilaSheply
         public bool areVacanciesAvaible()
         {
             bool _areVacanciesAvaible = false;
-            foreach(var university in UniversityList)
+            foreach (var university in UniversityList)
             {
                 _areVacanciesAvaible |= university.areVacanciesAvaible();
-                if(_areVacanciesAvaible)
+                if (_areVacanciesAvaible)
                 {
                     break;
                 }

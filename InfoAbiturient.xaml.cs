@@ -18,9 +18,22 @@ namespace geilaSheply
     /// </summary>
     public partial class InfoAbiturient : Window
     {
-        public InfoAbiturient()
+        public InfoAbiturient(AbiturientViewModel abiturientViewModel)
         {
             InitializeComponent();
+            this.DataContext = abiturientViewModel;
+
+            addColumnsToDatagrid("ID", "Id");
+            addColumnsToDatagrid("Название", "Name");
+        }
+
+        private void addColumnsToDatagrid(string header, string binding)
+        {
+            DataGridTextColumn c = new DataGridTextColumn();
+            c.Binding = new Binding(binding);
+            c.Header = header;
+
+            ListUniversitiesGrid.Columns.Add(c);
         }
     }
 }

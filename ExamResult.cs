@@ -20,6 +20,10 @@ namespace geilaSheply
             Informatics = informatics;
         }
 
+        public override string ToString()
+        {
+            return String.Format("М: {0}; Р: {1}; И: {2}; Ф:{3};", Math, RussianLang, Informatics, Physics);
+        }
     }
 
 }

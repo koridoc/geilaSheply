@@ -3,16 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:geilaSheply"
         mc:Ignorable="d"
         Title="Распределение абитуриентов по ВУЗам" Height="450" Width="800">
     <Grid>
-        <DataGrid HorizontalAlignment="Left" Height="359" Margin="10,50,0,0" VerticalAlignment="Top" Width="772"/>
+        <DataGrid x:Name="ViewListAbiturient" HorizontalAlignment="Left" Height="359" Margin="10,50,0,0" VerticalAlignment="Top" Width="772" AutoGenerateColumns="False" ItemsSource="{Binding Path=AbiturientsCollection}" MouseDoubleClick="ViewListAbiturient_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding Path=FullName}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Математика" Binding="{Binding Path=Result.Math}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Русский язык" Binding="{Binding Path=Result.RussianLang}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Информатика" Binding="{Binding Path=Result.Informatics}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Физика" Binding="{Binding Path=Result.Physics}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Label Content="Количество абитуриентов:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="170,14,0,0" TextWrapping="Wrap" Text="25" VerticalAlignment="Top" Width="50"/>
-        <Button Content="Создать список абитуриентов" HorizontalAlignment="Left" Margin="230,16,0,0" VerticalAlignment="Top" Width="200"/>
-        <Button Content="Список ВУЗов" HorizontalAlignment="Left" Margin="440,16,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button Content="Распределить абитуриентов по ВУЗам" HorizontalAlignment="Left" Margin="550,16,0,0" VerticalAlignment="Top" Width="232"/>
+        <TextBox HorizontalAlignment="Left" Height="22" Margin="170,14,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="50">
+            <TextBox.Text>
+                <Binding Path="QuantityAbiturients">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Button Content="Создать список абитуриентов" HorizontalAlignment="Left" Margin="230,16,0,0" VerticalAlignment="Top" Width="200" Click="Button_Click"/>
+        <Button Content="Список ВУЗов" HorizontalAlignment="Left" Margin="440,16,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_1"/>
+        <Button Content="Распределить абитуриентов по ВУЗам" HorizontalAlignment="Left" Margin="550,16,0,0" VerticalAlignment="Top" Width="232" Click="Button_Click_2"/>
 
     </Grid>
 </Window>

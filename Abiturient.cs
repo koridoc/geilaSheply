@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace geilaSheply
 {
@@ -42,7 +45,7 @@ namespace geilaSheply
 
         public bool haveUniversitiesForAdmission()
         {
-            return _universitiesForAdmission.isEmpty();
+            return !_universitiesForAdmission.isEmpty();
         }
 
         public University getFirstPriorityUniversity()
@@ -50,6 +53,10 @@ namespace geilaSheply
             return _universitiesForAdmission.First();
         }
 
+        public List<University> getUniversitiesForAdmissionBefore() 
+        {
+            return _universitiesForAdmissionBefore;
+        }
     }
 
     public class Abiturients
@@ -81,6 +88,11 @@ namespace geilaSheply
             return AbiturientList.Where( x => x.onTheEnrollmentList == false).Count() > 0;
         }
 
+        public bool haveNotEnrolledAbiturientsUniversitiesForAdmission() 
+        {
+            return AbiturientList.Where(x => x.onTheEnrollmentList == false &&  x.haveUniversitiesForAdmission()).Count() > 0;
+        }
+
         public Abiturient Last() 
         {
             return AbiturientList.Last();
@@ -89,6 +101,37 @@ namespace geilaSheply
         {
             AbiturientList.Sort(comparator);
         }
+
+        public void Clear() 
+        {
+            AbiturientList.Clear();
+        }
     }
 
+
+    public class AbiturientViewModel : INotifyPropertyChanged
+    {
+        public uint Id => _model.Id;
+        public string Name => _model.FullName;
+        public int ResultMath => _model.Result.Math;
+        public int ResultRussianLang => _model.Result.RussianLang;
+        public int ResultPhysics => _model.Result.Physics;
+        public int ResultInformatics => _model.Result.Informatics;
+        public int SumResult => _fSumResult(_model);
+        public List<University> Universities => _model.getUniversitiesForAdmissionBefore();
+        private Abiturient _model;
+        private Func<Abiturient, int> _fSumResult;
+        public AbiturientViewModel(Abiturient abiturientModel, Func<Abiturient, int> fSumResult) 
+        {
+            _model = abiturientModel;
+            _fSumResult = fSumResult;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+    }
 }

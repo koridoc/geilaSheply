@@ -8,19 +8,19 @@
         Title="Информация об абитуриенте" Height="350" Width="300">
     <Grid>
         <Label Content="ID:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="90,23,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="90,23,0,0" TextWrapping="Wrap" Text="{Binding Id, Mode=OneWay}" VerticalAlignment="Top" Width="150" IsReadOnly="True"/>
         <Label Content="ФИО:" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="90,54,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="90,54,0,0" TextWrapping="Wrap" Text="{Binding Name, Mode=OneWay}" VerticalAlignment="Top" Width="150"/>
         <Label Content="М:" HorizontalAlignment="Left" Margin="21,110,0,0" VerticalAlignment="Top" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Height="20" Margin="49,115,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="34"/>
+        <TextBox HorizontalAlignment="Left" Height="20" Margin="49,115,0,0" TextWrapping="Wrap" Text="{Binding ResultMath, Mode=OneWay}" VerticalAlignment="Top" Width="34"/>
         <Label Content="Результаты экзаменов:" HorizontalAlignment="Left" Margin="20,85,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="20" Margin="110,115,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="34"/>
+        <TextBox HorizontalAlignment="Left" Height="20" Margin="110,115,0,0" TextWrapping="Wrap" Text="{Binding ResultRussianLang, Mode=OneWay}" VerticalAlignment="Top" Width="34"/>
         <Label Content="Р:" HorizontalAlignment="Left" Margin="90,110,0,0" VerticalAlignment="Top" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Height="20" Margin="181,115,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="34"/>
+        <TextBox HorizontalAlignment="Left" Height="20" Margin="181,115,0,0" TextWrapping="Wrap" Text="{Binding ResultInformatics, Mode=OneWay}" VerticalAlignment="Top" Width="34"/>
         <Label Content="И:" HorizontalAlignment="Left" Margin="157,110,0,0" VerticalAlignment="Top" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Height="20" Margin="244,115,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="34"/>
+        <TextBox HorizontalAlignment="Left" Height="20" Margin="244,115,0,0" TextWrapping="Wrap" Text="{Binding ResultPhysics, Mode=OneWay}" VerticalAlignment="Top" Width="34"/>
         <Label Content="Ф:" HorizontalAlignment="Left" Margin="224,110,0,0" VerticalAlignment="Top"/>
-        <DataGrid HorizontalAlignment="Left" Height="100" Margin="20,172,0,0" VerticalAlignment="Top" Width="258"/>
+        <DataGrid x:Name="ListUniversitiesGrid" HorizontalAlignment="Left" Height="100" Margin="20,172,0,0" VerticalAlignment="Top" Width="258" ItemsSource="{Binding Universities, Mode=OneWay}" AutoGenerateColumns="False" IsReadOnly="True"/>
         <Label Content="Предпочитаемые ВУЗы:" HorizontalAlignment="Left" Margin="21,141,0,0" VerticalAlignment="Top"/>
 
     </Grid>
