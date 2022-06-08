@@ -20,7 +20,7 @@
         <Label Content="И:" HorizontalAlignment="Left" Margin="157,110,0,0" VerticalAlignment="Top" Height="26"/>
         <TextBox HorizontalAlignment="Left" Height="20" Margin="244,115,0,0" TextWrapping="Wrap" Text="{Binding ResultPhysics, Mode=OneWay}" VerticalAlignment="Top" Width="34"/>
         <Label Content="Ф:" HorizontalAlignment="Left" Margin="224,110,0,0" VerticalAlignment="Top"/>
-        <DataGrid HorizontalAlignment="Left" Height="100" Margin="20,172,0,0" VerticalAlignment="Top" Width="258" ItemsSource="{Binding Universities, Mode=OneWay}"/>
+        <DataGrid x:Name="ListUniversitiesGrid" HorizontalAlignment="Left" Height="100" Margin="20,172,0,0" VerticalAlignment="Top" Width="258" ItemsSource="{Binding Universities, Mode=OneWay}" AutoGenerateColumns="False" IsReadOnly="True"/>
         <Label Content="Предпочитаемые ВУЗы:" HorizontalAlignment="Left" Margin="21,141,0,0" VerticalAlignment="Top"/>
 
     </Grid>

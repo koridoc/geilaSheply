@@ -7,7 +7,9 @@ using System.Text;
 namespace geilaSheply
 {
 
-    public delegate int  ComparatorPrioritySubject(ExamResult a, ExamResult b);
+    public delegate int ComparatorPrioritySubject(ExamResult a, ExamResult b);
+
+    public delegate int SumSubjectsResult(ExamResult result);
 
     public static class Comaprators
     {
@@ -62,16 +64,35 @@ namespace geilaSheply
 
     }
 
+    public static class SumSubjects 
+    {
+        public static int InformaticsMathRussianLang(ExamResult result) 
+        {
+            return result.Informatics + result.Math + result.RussianLang;
+        }
+
+        public static int PhysicsMathRussianLang(ExamResult result) 
+        {
+            return result.Physics + result.Math + result.RussianLang;
+        }
+        public static int Sum(ExamResult result) => 0;
+    }
 
     public class AbiturientComparer: IComparer<Abiturient>
     {
         private ComparatorPrioritySubject _comparator;
+        private SumSubjectsResult _sumFunc;
 
-        public AbiturientComparer(ComparatorPrioritySubject comparator)
+        public AbiturientComparer(ComparatorPrioritySubject comparator, SumSubjectsResult sumFunc)
         {
             _comparator = comparator;
+            _sumFunc = sumFunc;
         }
 
+        public int SumSubjects(Abiturient a) 
+        {
+            return _sumFunc(a.Result);
+        }
         public int Compare (Abiturient a, Abiturient b)
         {
             if(a is null || b is null) 
@@ -83,7 +104,7 @@ namespace geilaSheply
 
     public class RulesForAdmission
     {
-        public readonly ExamResult MinimumScore;
+        public ExamResult MinimumScore { get; }
         
         public int Limits{get;}
         public AbiturientComparer Comparator{get;}

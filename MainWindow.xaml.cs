@@ -39,7 +39,7 @@ namespace geilaSheply
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            SettingsUniversity settingsUniversity = new SettingsUniversity();
+            SettingsUniversity settingsUniversity = new SettingsUniversity(mainModelView.SetUniversity);
             settingsUniversity.Show();
         }
 

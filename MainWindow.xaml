@@ -17,7 +17,15 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Количество абитуриентов:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="170,14,0,0" TextWrapping="Wrap" Text="{Binding QuantityAbiturients}" VerticalAlignment="Top" Width="50"/>
+        <TextBox HorizontalAlignment="Left" Height="22" Margin="170,14,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="50">
+            <TextBox.Text>
+                <Binding Path="QuantityAbiturients">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Button Content="Создать список абитуриентов" HorizontalAlignment="Left" Margin="230,16,0,0" VerticalAlignment="Top" Width="200" Click="Button_Click"/>
         <Button Content="Список ВУЗов" HorizontalAlignment="Left" Margin="440,16,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_1"/>
         <Button Content="Распределить абитуриентов по ВУЗам" HorizontalAlignment="Left" Margin="550,16,0,0" VerticalAlignment="Top" Width="232" Click="Button_Click_2"/>

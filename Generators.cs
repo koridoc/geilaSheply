@@ -134,7 +134,9 @@ namespace geilaSheply
         private void _addPriorityUniversities(Abiturient abiturient) {
             List<University> listUniversities = _avaibleUniversities.getListUniversities();
 
-            listUniversities = listUniversities.OrderBy((item) => _rand.Next()).ToList().GetRange(0, _rand.Next(3,5));
+            int m = listUniversities.Count() < 5 ? listUniversities.Count() : 5;
+
+            listUniversities = listUniversities.OrderBy((item) => _rand.Next()).ToList().GetRange(0, _rand.Next(m-2,m));
 
 
             foreach ( var university in listUniversities) 
@@ -169,8 +171,14 @@ namespace geilaSheply
         {
             Universities universities = new Universities();
 
-            var abiturientComparerInformatics = new AbiturientComparer(Comaprators.InformaticsMathRussianLang);
-            var abiturientComparerPhysics = new AbiturientComparer(Comaprators.PhysicsMathRussianLang);
+            var abiturientComparerInformatics = new AbiturientComparer(
+                                                     Comaprators.InformaticsMathRussianLang
+                                                    ,SumSubjects.InformaticsMathRussianLang
+                                                   );
+            var abiturientComparerPhysics = new AbiturientComparer(
+                                                     Comaprators.PhysicsMathRussianLang
+                                                    ,SumSubjects.PhysicsMathRussianLang
+                                                   );
 
             universities.Add(
                 new University("УГАТУ",

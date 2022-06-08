@@ -25,8 +25,14 @@ namespace geilaSheply
         public AdmittedList( List<University> universities)
         {
             InitializeComponent();
-            selectUniversityBox.ItemsSource = universities;
             abiturientViewModel = new List<AbiturientViewModel>();
+            selectUniversityBox.ItemsSource = universities;
+            if (universities != null && universities.Count() > 0)
+            {
+                selectUniversityBox.SelectedIndex = 0;
+            }
+
+            
         }
 
         private void selectUniversityBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -35,21 +41,9 @@ namespace geilaSheply
 
             var rules = university.Rules;
 
-            Func<ExamResult, int> sumFunc;
+            Func<Abiturient, int> sumFunc = rules.Comparator.SumSubjects;
 
 
-            if (rules.ComparatorName == "abiturientComparerInformatics")
-            {
-                sumFunc = (result) => result.Informatics + result.Math + result.RussianLang;
-            }
-            else if (rules.ComparatorName == "abiturientComparerPhysics")
-            {
-                sumFunc = (result) => result.Physics + result.Math + result.RussianLang;
-            }
-            else
-            {
-                sumFunc = (result) => 0;
-            }
 
             abiturientViewModel.Clear();
             foreach (var abit in university.AbiturientsInShortList.AbiturientList)

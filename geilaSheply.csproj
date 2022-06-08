@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddUniversity.xaml.cs">
+      <DependentUpon>AddUniversity.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AdmittedList.xaml.cs">
       <DependentUpon>AdmittedList.xaml</DependentUpon>
     </Compile>
@@ -70,6 +73,10 @@
       <DependentUpon>SettingsUniversity.xaml</DependentUpon>
     </Compile>
     <Compile Include="University.cs" />
+    <Page Include="AddUniversity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AdmittedList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

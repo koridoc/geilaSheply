@@ -111,28 +111,17 @@ namespace geilaSheply
 
     public class AbiturientViewModel : INotifyPropertyChanged
     {
-        [DisplayName("№")]
         public uint Id => _model.Id;
-        [DisplayName("ФИО")]
         public string Name => _model.FullName;
-        
-        [DisplayName("Математика")]
         public int ResultMath => _model.Result.Math;
-        [DisplayName("Русский язык")]
         public int ResultRussianLang => _model.Result.RussianLang;
-        [DisplayName("Физика")]
-
         public int ResultPhysics => _model.Result.Physics;
-        [DisplayName("Информатика")]
         public int ResultInformatics => _model.Result.Informatics;
-        [DisplayName("Сумма баллов")]
-        public int SumResult => _fSumResult(_model.Result);
-
+        public int SumResult => _fSumResult(_model);
         public List<University> Universities => _model.getUniversitiesForAdmissionBefore();
-
         private Abiturient _model;
-        private Func<ExamResult, int> _fSumResult;
-        public AbiturientViewModel(Abiturient abiturientModel, Func<ExamResult, int> fSumResult) 
+        private Func<Abiturient, int> _fSumResult;
+        public AbiturientViewModel(Abiturient abiturientModel, Func<Abiturient, int> fSumResult) 
         {
             _model = abiturientModel;
             _fSumResult = fSumResult;
