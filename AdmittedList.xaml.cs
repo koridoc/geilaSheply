@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -21,7 +22,6 @@ namespace geilaSheply
     {
         List<AbiturientViewModel> abiturientViewModel;
 
-        private bool infHide;
         public AdmittedList( List<University> universities)
         {
             InitializeComponent();
@@ -33,38 +33,76 @@ namespace geilaSheply
         {
             University university = (University)selectUniversityBox.SelectedItem;
 
-            var cmp = university.Rules.Comparator;
-            ComparatorPrioritySubject cmpInf = Comaprators.InformaticsMathRussianLang;
-            ComparatorPrioritySubject cmpPhys = Comaprators.PhysicsMathRussianLang;
+            var rules = university.Rules;
 
             Func<ExamResult, int> sumFunc;
 
-            
-            if(cmp.Equals(cmpInf)) 
+
+            if (rules.ComparatorName == "abiturientComparerInformatics")
             {
                 sumFunc = (result) => result.Informatics + result.Math + result.RussianLang;
-                infHide = false;
+            }
+            else if (rules.ComparatorName == "abiturientComparerPhysics")
+            {
+                sumFunc = (result) => result.Physics + result.Math + result.RussianLang;
             }
             else
             {
-                sumFunc = (result) => result.Physics + result.Math + result.RussianLang;
-                infHide = true;
+                sumFunc = (result) => 0;
             }
 
             abiturientViewModel.Clear();
-            foreach (var abit in university.AbiturientsInShortList.AbiturientList) 
+            foreach (var abit in university.AbiturientsInShortList.AbiturientList)
             {
                 abiturientViewModel.Add(new AbiturientViewModel(abit, sumFunc));
             }
 
-            admittedAbiturientsGrid.ItemsSource = abiturientViewModel;
+            admittedAbiturientsGrid.Columns.Clear();
             admittedAbiturientsGrid.Items.Refresh();
-            //admittedAbiturientsGrid.Columns[0].Visibility
+            admittedAbiturientsGrid.UpdateLayout();
+
+            admittedAbiturientsGrid.ItemsSource = abiturientViewModel;
+
+            addColumnsToDatagrid("№", "Id");
+            addColumnsToDatagrid("ФИО", "Name");
+
+            if (rules.ComparatorName != "Sum") 
+            { 
+                addColumnsToDatagrid("Сумма баллов", "SumResult");
+            }
+
+            addColumnsToDatagrid("Математика", "ResultMath");
+
+            if (rules.ComparatorName == "abiturientComparerPhysics" || rules.ComparatorName == "Sum")
+            {
+                addColumnsToDatagrid("Физика", "ResultPhysics");
+            }
+            if (rules.ComparatorName == "abiturientComparerInformatics" || rules.ComparatorName == "Sum")
+            {
+                addColumnsToDatagrid("Информатика", "ResultInformatics");
+            }
+            addColumnsToDatagrid("Русский язык", "ResultRussianLang");
+            admittedAbiturientsGrid.Items.Refresh();
+            admittedAbiturientsGrid.UpdateLayout();
         }
 
-        private void hideUnusedColums() 
+        private void addColumnsToDatagrid(string header, string binding)
         {
-            
+            DataGridTextColumn c = new DataGridTextColumn();
+            c.Binding = new Binding(binding);
+            c.Header = header;
+
+            admittedAbiturientsGrid.Columns.Add(c);
+        }
+
+        private void admittedAbiturientsGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            AbiturientViewModel abiturientViewModel = (AbiturientViewModel)admittedAbiturientsGrid.SelectedItem;
+            if (admittedAbiturientsGrid.SelectedItem != null)
+            {
+                InfoAbiturient infoAbiturient = new InfoAbiturient(abiturientViewModel);
+                infoAbiturient.Show();
+            }
         }
     }
 

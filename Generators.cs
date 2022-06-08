@@ -175,35 +175,35 @@ namespace geilaSheply
             universities.Add(
                 new University("УГАТУ",
                     new RulesForAdmission(5,
-                        new ExamResult(40, 30, 0, 45), abiturientComparerInformatics)
+                        new ExamResult(40, 30, 0, 45), abiturientComparerInformatics, "abiturientComparerInformatics")
                 )
             );
 
             universities.Add(
                 new University("УГНТУ",
                     new RulesForAdmission(10,
-                        new ExamResult(40, 30, 35, 0), abiturientComparerPhysics)
+                        new ExamResult(40, 30, 35, 0), abiturientComparerPhysics, "abiturientComparerPhysics")
                 )
             );
 
             universities.Add(
                 new University("КФУ",
                     new RulesForAdmission(15,
-                        new ExamResult(40, 30, 0, 45), abiturientComparerInformatics)
+                        new ExamResult(40, 30, 0, 45), abiturientComparerInformatics, "abiturientComparerInformatics")
                 )
             );
 
             universities.Add(
                 new University("БГУ",
                     new RulesForAdmission(5,
-                        new ExamResult(40, 30, 35, 0), abiturientComparerPhysics)
+                        new ExamResult(40, 30, 35, 0), abiturientComparerPhysics, "abiturientComparerPhysics")
                 )
             );
 
             universities.Add(
                 new University("ТГУ",
                     new RulesForAdmission(5,
-                        new ExamResult(40, 30, 0, 45), abiturientComparerInformatics)
+                        new ExamResult(40, 30, 0, 45), abiturientComparerInformatics, "abiturientComparerInformatics")
                 )
             );
 

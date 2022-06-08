@@ -18,9 +18,10 @@ namespace geilaSheply
     /// </summary>
     public partial class InfoAbiturient : Window
     {
-        public InfoAbiturient()
+        public InfoAbiturient(AbiturientViewModel abiturientViewModel)
         {
             InitializeComponent();
+            this.DataContext = abiturientViewModel;
         }
     }
 }

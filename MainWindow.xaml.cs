@@ -57,5 +57,16 @@ namespace geilaSheply
             }
             
         }
+
+        private void ViewListAbiturient_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Abiturient abit = (Abiturient)ViewListAbiturient.SelectedItem;
+            AbiturientViewModel abiturientViewModel = new AbiturientViewModel(abit, x => 0);
+            if (ViewListAbiturient.SelectedItem != null)
+            {
+                InfoAbiturient infoAbiturient = new InfoAbiturient(abiturientViewModel);
+                infoAbiturient.Show();
+            }
+        }
     }
 }

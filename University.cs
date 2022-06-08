@@ -57,6 +57,10 @@ namespace geilaSheply
             AbiturientsInShortList.Sort(Rules.Comparator);
         }
 
+        public void ClearShortList() 
+        {
+            AbiturientsInShortList.Clear();
+        }
         public override string ToString() 
         {
             return Name;
@@ -90,6 +94,11 @@ namespace geilaSheply
         public University First()
         {
             return UniversityList.First();
+        }
+
+        public void ClearInUniversitiesShotList() 
+        {
+            UniversityList.ForEach(x => x.ClearShortList());
         }
 
         public void Shuflle() 

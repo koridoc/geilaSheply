@@ -51,7 +51,8 @@ namespace geilaSheply
                 new RulesForAdmission(
                     int.MaxValue, 
                     new ExamResult(0,0,0,0), 
-                    new AbiturientComparer(Comaprators.Sum)
+                    new AbiturientComparer(Comaprators.Sum),
+                    "Sum"
                 )
             );
 
@@ -62,8 +63,10 @@ namespace geilaSheply
 
         public void RunAlgGeilaSheply() 
         {
+            _setUniversity.ClearInUniversitiesShotList();
             _AlgGeilaSheply = new AlgGeilaSheply(_setAbiturient, _setUniversity);
             _AlgGeilaSheply.Run();
+            UniversitiesCollection = new List<University>(_setUniversity.getListUniversities());
             addNotAdmitted();
         }
         public void CreateListAbiturients() 

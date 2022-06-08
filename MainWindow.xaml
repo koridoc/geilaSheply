@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         Title="Распределение абитуриентов по ВУЗам" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="ViewListAbiturient" HorizontalAlignment="Left" Height="359" Margin="10,50,0,0" VerticalAlignment="Top" Width="772" AutoGenerateColumns="False" ItemsSource="{Binding Path=AbiturientsCollection}">
+        <DataGrid x:Name="ViewListAbiturient" HorizontalAlignment="Left" Height="359" Margin="10,50,0,0" VerticalAlignment="Top" Width="772" AutoGenerateColumns="False" ItemsSource="{Binding Path=AbiturientsCollection}" MouseDoubleClick="ViewListAbiturient_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" Binding="{Binding Path=Id}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="ФИО" Binding="{Binding Path=FullName}" IsReadOnly="True"/>

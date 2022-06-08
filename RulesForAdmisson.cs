@@ -18,16 +18,16 @@ namespace geilaSheply
             int sumB = b.Informatics + b.Math + b.RussianLang;
 
             if (sumA != sumB)
-                return sumA - sumB;
+                return sumB - sumA;
 
             if (a.Informatics != b.Informatics)
-                return a.Informatics - b.Informatics;
+                return b.Informatics - a.Informatics;
 
             if (a.Math != b.Math)
-                return a.Math - b.Math;
+                return b.Math - a.Math;
 
             if (a.RussianLang != b.RussianLang)
-                return a.RussianLang - b.RussianLang;
+                return b.RussianLang - a.RussianLang;
             
             return 0;
 
@@ -88,11 +88,14 @@ namespace geilaSheply
         public int Limits{get;}
         public AbiturientComparer Comparator{get;}
 
-        public RulesForAdmission(int limits, ExamResult minimumScore, AbiturientComparer comparator)
+        public string ComparatorName { get; }
+
+        public RulesForAdmission(int limits, ExamResult minimumScore, AbiturientComparer comparator, string compName)
         {
             Limits = limits;
             MinimumScore = minimumScore;
             Comparator = comparator;
+            ComparatorName = compName;
         }
 
         public bool isMinumumScorePassed(ExamResult score)

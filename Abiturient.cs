@@ -53,6 +53,10 @@ namespace geilaSheply
             return _universitiesForAdmission.First();
         }
 
+        public List<University> getUniversitiesForAdmissionBefore() 
+        {
+            return _universitiesForAdmissionBefore;
+        }
     }
 
     public class Abiturients
@@ -84,6 +88,11 @@ namespace geilaSheply
             return AbiturientList.Where( x => x.onTheEnrollmentList == false).Count() > 0;
         }
 
+        public bool haveNotEnrolledAbiturientsUniversitiesForAdmission() 
+        {
+            return AbiturientList.Where(x => x.onTheEnrollmentList == false &&  x.haveUniversitiesForAdmission()).Count() > 0;
+        }
+
         public Abiturient Last() 
         {
             return AbiturientList.Last();
@@ -92,20 +101,34 @@ namespace geilaSheply
         {
             AbiturientList.Sort(comparator);
         }
+
+        public void Clear() 
+        {
+            AbiturientList.Clear();
+        }
     }
 
 
     public class AbiturientViewModel : INotifyPropertyChanged
     {
+        [DisplayName("№")]
         public uint Id => _model.Id;
+        [DisplayName("ФИО")]
         public string Name => _model.FullName;
-
-        public int ResultInformatics => _model.Result.Informatics;
+        
+        [DisplayName("Математика")]
         public int ResultMath => _model.Result.Math;
+        [DisplayName("Русский язык")]
         public int ResultRussianLang => _model.Result.RussianLang;
-        public int ResultPhysics => _model.Result.Physics;
+        [DisplayName("Физика")]
 
+        public int ResultPhysics => _model.Result.Physics;
+        [DisplayName("Информатика")]
+        public int ResultInformatics => _model.Result.Informatics;
+        [DisplayName("Сумма баллов")]
         public int SumResult => _fSumResult(_model.Result);
+
+        public List<University> Universities => _model.getUniversitiesForAdmissionBefore();
 
         private Abiturient _model;
         private Func<ExamResult, int> _fSumResult;
