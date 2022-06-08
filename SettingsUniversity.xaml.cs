@@ -61,6 +61,13 @@ namespace geilaSheply
             AddUniversity addUniversityWindow = new AddUniversity(SetUniversities, ListUniversitiesGrid);
             addUniversityWindow.Show();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            SetUniversities.Clear();
+            ListUniversitiesGrid.ItemsSource = SetUniversities.getListUniversities();
+            ListUniversitiesGrid.Items.Refresh();
+        }
     }
 }
 

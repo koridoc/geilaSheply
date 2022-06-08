@@ -98,6 +98,10 @@ namespace geilaSheply
             return UniversityList.First();
         }
 
+        public void Clear() 
+        {
+            UniversityList.Clear();
+        }
         public void ClearInUniversitiesShotList()
         {
             UniversityList.ForEach(x => x.ClearShortList());

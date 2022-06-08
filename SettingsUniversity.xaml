@@ -12,6 +12,7 @@
         </DataGrid>
         <Button Content="Удалить ВУЗ из списка" HorizontalAlignment="Left" Margin="602,380,0,0" VerticalAlignment="Top" Width="180" Click="Button_Click"/>
         <Button Content="Добавить" HorizontalAlignment="Left" Margin="10,380,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click_1"/>
+        <Button Content="Очистить список" HorizontalAlignment="Left" Margin="306,380,0,0" VerticalAlignment="Top" Width="180" Click="Button_Click_2"/>
 
     </Grid>
 </Window>

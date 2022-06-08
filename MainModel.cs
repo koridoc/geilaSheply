@@ -22,7 +22,7 @@ namespace geilaSheply
                 switch (columnName) 
                 {
                     case "QuantityAbiturients":
-                        if(QuantityAbiturients < 0) 
+                        if (QuantityAbiturients < 0) 
                         {
                             return " оличество должно быть неотрицательным";
                         }
@@ -47,7 +47,7 @@ namespace geilaSheply
         private int _quantityAbiturients;
 
         public Universities SetUniversity;
-        private Abiturients _setAbiturient;
+        public Abiturients SetAbiturient;
         private AlgGeilaSheply _AlgGeilaSheply;
 
         private GenerateUniversities _generateUniversities;
@@ -57,7 +57,7 @@ namespace geilaSheply
         {
             _generateUniversities = new GenerateUniversities();
             _generatorAbiturient = new GeneratorAbiturient();
-            _quantityAbiturients = 10;
+            _quantityAbiturients = 0;
             SetUniversity = _generateUniversities.GetUniversities();
             AbiturientsCollection = new List<Abiturient>();
             UniversitiesCollection = new List<University>(SetUniversity.getListUniversities());
@@ -78,7 +78,7 @@ namespace geilaSheply
                 )
             );
 
-            List<Abiturient> notAdmited = _setAbiturient.AbiturientList.Where(x => x.onTheEnrollmentList == false).ToList();
+            List<Abiturient> notAdmited = SetAbiturient.AbiturientList.Where(x => x.onTheEnrollmentList == false).ToList();
             nonUniversity.AbiturientsInShortList.AbiturientList = notAdmited;
             UniversitiesCollection.Add(nonUniversity);
         }
@@ -86,7 +86,7 @@ namespace geilaSheply
         public void RunAlgGeilaSheply() 
         {
             SetUniversity.ClearInUniversitiesShotList();
-            _AlgGeilaSheply = new AlgGeilaSheply(_setAbiturient, SetUniversity);
+            _AlgGeilaSheply = new AlgGeilaSheply(SetAbiturient, SetUniversity);
             _AlgGeilaSheply.Run();
             UniversitiesCollection = new List<University>(SetUniversity.getListUniversities());
             addNotAdmitted();
@@ -94,8 +94,8 @@ namespace geilaSheply
         public void CreateListAbiturients() 
         {
             _generatorAbiturient.SetAvaibleUniversities(SetUniversity);
-            _setAbiturient = _generatorAbiturient.GetAbiturients(QuantityAbiturients);
-            AbiturientsCollection = _setAbiturient.AbiturientList;
+            SetAbiturient = _generatorAbiturient.GetAbiturients(QuantityAbiturients);
+            AbiturientsCollection = SetAbiturient.AbiturientList;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

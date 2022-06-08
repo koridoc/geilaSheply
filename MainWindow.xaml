@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Распределение абитуриентов по ВУЗам" Height="450" Width="800">
+        Title="Распределение абитуриентов по ВУЗам" Height="480" Width="800">
     <Grid>
         <DataGrid x:Name="ViewListAbiturient" HorizontalAlignment="Left" Height="359" Margin="10,50,0,0" VerticalAlignment="Top" Width="772" AutoGenerateColumns="False" ItemsSource="{Binding Path=AbiturientsCollection}" MouseDoubleClick="ViewListAbiturient_MouseDoubleClick">
             <DataGrid.Columns>
@@ -17,18 +17,19 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Количество абитуриентов:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="170,14,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="50">
+        <TextBox x:Name="qntAbits" HorizontalAlignment="Left" Height="22" Margin="170,14,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="50" >
             <TextBox.Text>
-                <Binding Path="QuantityAbiturients">
+                <Binding Path="QuantityAbiturients" NotifyOnValidationError="True">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <Button Content="Создать список абитуриентов" HorizontalAlignment="Left" Margin="230,16,0,0" VerticalAlignment="Top" Width="200" Click="Button_Click"/>
+        <Button x:Name="GenListAbit" Content="Создать список абитуриентов" HorizontalAlignment="Left" Margin="230,16,0,0" VerticalAlignment="Top" Width="200" Click="Button_Click"/>
         <Button Content="Список ВУЗов" HorizontalAlignment="Left" Margin="440,16,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_1"/>
         <Button Content="Распределить абитуриентов по ВУЗам" HorizontalAlignment="Left" Margin="550,16,0,0" VerticalAlignment="Top" Width="232" Click="Button_Click_2"/>
+        <Button Content="Очистить  список" HorizontalAlignment="Left" Margin="682,419,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_3" />
 
     </Grid>
 </Window>

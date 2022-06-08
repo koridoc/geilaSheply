@@ -33,9 +33,15 @@ namespace geilaSheply
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            mainModelView.CreateListAbiturients();
-            ViewListAbiturient.ItemsSource = mainModelView.AbiturientsCollection;
+            bool err = Validation.GetHasError(qntAbits);
+            if (!err) 
+            {
+                mainModelView.CreateListAbiturients();
+                ViewListAbiturient.ItemsSource = mainModelView.AbiturientsCollection;
+            }
+            
         }
+
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -67,6 +73,14 @@ namespace geilaSheply
                 InfoAbiturient infoAbiturient = new InfoAbiturient(abiturientViewModel);
                 infoAbiturient.Show();
             }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            mainModelView.AbiturientsCollection.Clear();
+            ViewListAbiturient.ItemsSource = mainModelView.AbiturientsCollection;
+            mainModelView.SetAbiturient.Clear();
+            ViewListAbiturient.Items.Refresh();
         }
     }
 }
