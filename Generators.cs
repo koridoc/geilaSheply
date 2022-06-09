@@ -135,8 +135,11 @@ namespace geilaSheply
             List<University> listUniversities = _avaibleUniversities.getListUniversities();
 
             int m = listUniversities.Count() < 5 ? listUniversities.Count() : 5;
-
-            listUniversities = listUniversities.OrderBy((item) => _rand.Next()).ToList().GetRange(0, _rand.Next(m-2,m));
+            if (m == 0)
+            {
+                return;
+            }
+            listUniversities = listUniversities.OrderBy((item) => _rand.Next()).ToList().GetRange(0, Math.Max(_rand.Next(m-2,m),1));
 
 
             foreach ( var university in listUniversities) 
